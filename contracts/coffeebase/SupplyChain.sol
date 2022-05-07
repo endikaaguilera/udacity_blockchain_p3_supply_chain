@@ -200,7 +200,7 @@ contract SupplyChain is
     function processItem(uint256 _upc)
         public
         harvested(_upc)
-        verifyCaller(msg.sender)
+        verifyCaller(items[_upc].ownerID)
     {
         // Update the appropriate fields
         items[_upc].itemState = State.Processed;
@@ -213,7 +213,7 @@ contract SupplyChain is
     function packItem(uint256 _upc)
         public
         processed(_upc)
-        verifyCaller(msg.sender)
+        verifyCaller(items[_upc].ownerID)
         onlyFarmer
     {
         // Update the appropriate fields
@@ -227,7 +227,7 @@ contract SupplyChain is
     function sellItem(uint256 _upc, uint256 _price)
         public
         packed(_upc)
-        verifyCaller(msg.sender)
+        verifyCaller(items[_upc].ownerID)
         onlyFarmer
     {
         // Update the appropriate fields
@@ -267,7 +267,7 @@ contract SupplyChain is
     function shipItem(uint256 _upc)
         public
         sold(_upc)
-        verifyCaller(msg.sender)
+        verifyCaller(items[_upc].ownerID)
         onlyDistributor
     {
         // Update the appropriate fields
