@@ -267,7 +267,7 @@ contract SupplyChain is
     function shipItem(uint256 _upc)
         public
         sold(_upc)
-        verifyCaller(items[_upc].ownerID)
+        verifyCaller(items[_upc].distributorID)
         onlyDistributor
     {
         // Update the appropriate fields
